@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+function registerPaymentHandler() {
+      console.log('hello1');
+  return navigator.serviceWorker.register('payment_handler.js')
+    .then(registration => {
+      console.log('hello2');
+      if (!registration.paymentManager)
+        throw Error('PaymentManager is not supported');
+
+      return registration.paymentManager.instruments.get('instrument-key');
+    })
+    .then(instrument => {
+      console.log(JSON.stringify(instrument));
+      if (instrument)
+        return;
+
+      return registration.paymentManager.instruments.set(
+        "instrument-key",
+        {
+          name: 'Payment Handler',
+          icons: [],
+          enabledMethods: ['basic-card']
+        })
+    })
+    .then(() => {
+      console.log('Payment Handler Registered!');
+    });
+}
+
+</script>
+</head>
+<body>
+<script>
+
+registerPaymentHandler();
+
+</script>
+</body>
+</html>
