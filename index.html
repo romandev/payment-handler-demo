@@ -11,7 +11,7 @@ function registerPaymentHandler() {
       if (!registration.paymentManager)
         throw Error('PaymentManager is not supported');
       console.log('hello3');
-
+      console.log(registration.paymentManager.instruments.get('instrument-key'));
       return registration.paymentManager.instruments.get('instrument-key');
     })
     .then(instrument => {
