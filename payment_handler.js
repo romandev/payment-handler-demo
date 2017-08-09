@@ -9,6 +9,6 @@ self.addEventListener('paymentrequest', function(e) {
       }
     });
     
-    clients.openWindow("payment_window.html");
+    e.openWindow("payment_window.html");
   }));
 });
