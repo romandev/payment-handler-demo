@@ -1,3 +1,5 @@
 self.addEventListener('paymentrequest', function(e) {
-  e.respondWith({});
+  e.respondWith(new Promise(function(resolve, reject) {
+    reject();
+  }));
 });
