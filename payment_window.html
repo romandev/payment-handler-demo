@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<input type="button" value="Pay">
+<script>
+
+var button = document.querySelector("input[type=button]");
+button.addEventListener('click', function() {
+  navigator.serviceWorker.controller.postMessage({ methodName: "hello", details: { cardType: "visa" }});
+  window.close();
+});
+
+</script>
+</body>
+</html>
