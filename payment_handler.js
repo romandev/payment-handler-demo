@@ -1,3 +1,3 @@
 self.addEventListener('paymentrequest', function(e) {
-  console.log(e);
+  e.waitUntil(clients.openWindow("https://paytest.github.io"));
 });
