@@ -1,12 +1,14 @@
 self.addEventListener('paymentrequest', function(e) {
   e.respondWith(new Promise(function(resolve, reject) {
-    clients.openWindow("http://naver.com").then(function() {
-      resolve({
-        methodName : "hello",
-        details: {
-          cardType: "visa"
-        }
-      });
+    self.addEventListener('message', listener = function(e) {
+      self.removeEventListener('message', listener);
+      if (e.data.hasOwnProperty('name')) {
+        reject(e.data);
+      } else {
+        resolve(e.data);
+      }
     });
+    
+    clients.openWindow("payment_window.html");
   }));
 });
