@@ -1,5 +1,5 @@
 self.addEventListener('canmakepayment', function(e) {
-  e.respondWith(true);
+  e.respondWith(false);
 });
 
 self.addEventListener('paymentrequest', function(e) {
