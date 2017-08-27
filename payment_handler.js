@@ -1,3 +1,7 @@
+self.addEventListener('canmakepayment', function(e) {
+  e.respondWith(true);
+});
+
 self.addEventListener('paymentrequest', function(e) {
   e.respondWith(new Promise(function(resolve, reject) {
     self.addEventListener('message', listener = function(e) {
