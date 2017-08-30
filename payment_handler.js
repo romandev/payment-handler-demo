@@ -1,3 +1,13 @@
+self.addEventListener('install', function(e) {
+  event.waitUntil(
+    caches.open('v1').then(function(cache) {
+      return cache.addAll([
+        '/index.html',
+      ]);
+    })
+  );
+});
+
 self.addEventListener('canmakepayment', function(e) {
   e.respondWith(false);
 });
