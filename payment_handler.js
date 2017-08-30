@@ -1,3 +1,11 @@
+self.addEventListener('activate', function(e) {
+  console.log(e);
+});
+
+self.addEventListener('fetch', function(e) {
+  console.log(e);
+});
+
 self.addEventListener('install', function(e) {
   console.log('yaho!!!!');
   event.waitUntil(
