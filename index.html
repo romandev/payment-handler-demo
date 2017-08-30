@@ -7,6 +7,7 @@ function registerPaymentHandler() {
       console.log('hello1');
   return navigator.serviceWorker.register('payment_handler.js')
     .then(registration => {
+        console.log(registration);
       console.log('hello2');
       if (!registration.paymentManager)
         throw Error('PaymentManager is not supported');
