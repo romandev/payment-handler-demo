@@ -32,8 +32,10 @@ function addInstruments(registration) {
 }
 
 function registerPaymentHandler() {
+  var keepRegistration;
   return navigator.serviceWorker.register('payment_handler.js')
     .then(registration => {
+      keepRegistration = registration;
       if (!registration.paymentManager)
         throw Error('PaymentManager is not supported');
         
@@ -41,7 +43,15 @@ function registerPaymentHandler() {
     })
     .then(() => {
       console.log('Payment Handler Registered!');
-    });
+      return keepRegistration.paymentManager.instruments.get("dc2de27a-ca5e-4fbd-883e-b6ded6c69d4f");
+    })
+    .then(instrument => {
+      console.log(instrument);
+      return keepRegistration.paymentManager.instruments.get("c8126178-3bba-4d09-8f00-0771deadbeef");
+    })
+    .then(instrument => {
+      console.log(instrument);
+    })
 }
 
 </script>
