@@ -2,24 +2,42 @@
 <html>
 <head>
 <script>
+      
+function addInstruments(registration) {
+  const instrumentPromises = [
+    registration.paymentManager.instruments.set(
+      "dc2de27a-ca5e-4fbd-883e-b6ded6c69d4f",
+      {
+        name: "My Bob Pay Account",
+        icons: [{
+          src: "/pay/bobpay.png",
+          sizes: "32x32",
+          type: "image/png"
+        }],
+        enabledMethods: ["https://emerald-eon.appspot.com/bobpay"]
+      }),
+    registration.paymentManager.instruments.set(
+      "c8126178-3bba-4d09-8f00-0771deadbeef",
+      {
+        name: "AliPay (via BobPay)",
+        icons: [{
+          src: "https://i.alipayobjects.com/common/favicon/favicon.ico",
+          sizes: "32x32",
+          type: "image/png"
+        }],
+        enabledMethods: ["https://www.alipay.com/webpay"]
+      })
+  ];
+  return Promise.all(instrumentPromises);
+}
 
 function registerPaymentHandler() {
-      console.log('hello1');
   return navigator.serviceWorker.register('payment_handler.js')
     .then(registration => {
-        console.log(registration);
-      console.log('hello2');
       if (!registration.paymentManager)
         throw Error('PaymentManager is not supported');
-      console.log('hello3');
-
-      return registration.paymentManager.instruments.set(
-        "instrument-key",
-        {
-          name: 'Payment Handler',
-          icons: [],
-          enabledMethods: ['basic-card', 'https://emerald-eon.appspot.com/bobpay']
-        })
+        
+      return addInstruments(registration);
     })
     .then(() => {
       console.log('Payment Handler Registered!');
