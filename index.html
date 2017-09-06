@@ -14,7 +14,7 @@ function addInstruments(registration) {
           sizes: "32x32",
           type: "image/png"
         }],
-        enabledMethods: ["https://emerald-eon.appspot.com/bobpay"]
+        enabledMethods: ["basic-card", "https://emerald-eon.appspot.com/bobpay"]
       }),
     registration.paymentManager.instruments.set(
       "c8126178-3bba-4d09-8f00-0771deadbeef",
@@ -25,7 +25,7 @@ function addInstruments(registration) {
           sizes: "32x32",
           type: "image/png"
         }],
-        enabledMethods: ["https://www.alipay.com/webpay"]
+        enabledMethods: ["basic-card"]
       })
   ];
   return Promise.all(instrumentPromises);
