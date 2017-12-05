@@ -8,24 +8,13 @@ function addInstruments(registration) {
     registration.paymentManager.instruments.set(
       "dc2de27a-ca5e-4fbd-883e-b6ded6c69d4f",
       {
-        name: "My Bob Pay Account",
+        name: "Hello Pay!",
         icons: [{
           src: "/pay/bobpay.png",
           sizes: "32x32",
           type: "image/png"
         }],
         enabledMethods: ["basic-card", "https://emerald-eon.appspot.com/bobpay"]
-      }),
-    registration.paymentManager.instruments.set(
-      "c8126178-3bba-4d09-8f00-0771deadbeef",
-      {
-        name: "AliPay (via BobPay)",
-        icons: [{
-          src: "https://i.alipayobjects.com/common/favicon/favicon.ico",
-          sizes: "32x32",
-          type: "image/png"
-        }],
-        enabledMethods: ["basic-card"]
       })
   ];
   return Promise.all(instrumentPromises);
